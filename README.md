@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #TDDD272017
 
 Functional specification:
@@ -10,3 +11,6 @@ Client framework: Angular and MongoDB to create a database.
 Server framework: ExpressJS, NodeJS
 
 Deployment: Heroku
+=======
+#TDDD27 project
+>>>>>>> 15c93295c51dad2263b5682e5ba35c7f6533a290
