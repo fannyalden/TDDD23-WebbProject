@@ -6,13 +6,15 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { MenuComponent } from './menu/menu.component';
 import {routes} from './app.router';
-import { SigninComponent } from './signin/signin.component';
+import { SigninComponent } from './menu/signin/signin.component';
+import { ContentComponent } from './content/content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
-    SigninComponent
+    SigninComponent,
+    ContentComponent
   ],
   imports: [
     BrowserModule,
