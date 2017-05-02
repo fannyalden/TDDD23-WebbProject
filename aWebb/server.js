@@ -30,7 +30,7 @@ mongoose.connect('mongodb://localhost:27017/tutorial', function(err){
 
 //Connect to the index. (* means, no mather what the user types, feed this index page)
 app.get('*', function(req, res){
-    res.sendfile(path.join(__dirname + '/public/app/views/index.html'));
+    res.sendfile(path.join(__dirname + '/public/src/index.html'));
 });
 
 app.listen(port, function(){
