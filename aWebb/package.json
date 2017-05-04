@@ -1,23 +1,22 @@
 {
-  "name": "tutorialmean",
+  "name": "meanauthapp",
   "version": "1.0.0",
-  "description": "Mean tutorial",
-  "main": "server.js",
+  "description": "MEAN stack authentication app",
+  "main": "app.js",
   "scripts": {
-    "test": "MEAN stack",
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
   },
-  "keywords": [
-    "MEAN",
-    "stack"
-  ],
-  "author": "Agnes",
+  "author": "fanny",
   "license": "ISC",
   "dependencies": {
-    "bcrypt-nodejs": "0.0.3",
-    "body-parser": "^1.17.1",
-    "express": "^4.15.2",
-    "mongoose": "^4.9.6",
-    "morgan": "^1.8.1"
+    "express":"*",
+    "mongoose":"*",
+    "bcryptjs":"*",
+    "cors":"*",
+    "jsonwebtoken":"*",
+    "body-parser":"*",
+    "passport":"*",
+    "passport-jwt":"*"
   }
 }

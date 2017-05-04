@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/TutorialMEAN.iml" filepath="$PROJECT_DIR$/.idea/TutorialMEAN.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/meanauthapp.iml" filepath="$PROJECT_DIR$/.idea/meanauthapp.iml" />
     </modules>
   </component>
 </project>
