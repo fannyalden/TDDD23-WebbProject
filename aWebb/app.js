@@ -6,36 +6,36 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const config = require('./config/database');
 
-// Connect to database
+// Connect To Database
 mongoose.connect(config.database);
 
-// On connection
-mongoose.connection.on('connected', function() {
-    console.log('Connected to database: ' + config.database);
+// On Connection
+mongoose.connection.on('connected', () => {
+  console.log('Connected to database '+config.database);
 });
 
-// On error
-mongoose.connection.on('error', function(err) {
-    console.log('Database error: ' + err);
+// On Error
+mongoose.connection.on('error', (err) => {
+  console.log('Database error: '+err);
 });
 
 const app = express();
 
 const users = require('./routes/users');
 
-// Port number
-const port = process.env.PORT || 8080;
+// Port Number
+const port = 4000;
 
-// CORS middleware
+// CORS Middleware
 app.use(cors());
 
-//Set static folder
+// Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Body-parses middleware
+// Body Parser Middleware
 app.use(bodyParser.json());
 
-// Passport middleware
+// Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -44,15 +44,15 @@ require('./config/passport')(passport);
 app.use('/users', users);
 
 // Index Route
-app.get('/', function(req, res){
-    res.send('Invalid endpoint');
+app.get('/', (req, res) => {
+  res.send('Invalid Endpoint');
 });
 
-app.get('*',function(){
-    res.sendfile(path.join(__dirname, 'public/index.html'));
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public/index.html'));
 });
 
-// Start server
-app.listen(port, function(){
-    console.log('server started on port: ' + port);
+// Start Server
+app.listen(port, () => {
+  console.log('Server started on port '+port);
 });

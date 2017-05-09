@@ -7,9 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app"
   },
-  "author": "fanny",
-  "license": "ISC",
-  "dependencies": {
+  "dependencies":{
     "express":"*",
     "mongoose":"*",
     "bcryptjs":"*",
@@ -18,5 +16,7 @@
     "body-parser":"*",
     "passport":"*",
     "passport-jwt":"*"
-  }
+  },
+  "author": "Brad Traversy",
+  "license": "ISC"
 }
