@@ -1,0 +1,14 @@
+.featured-image{
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+}
+
+.img.loading{
+    opacity: 0;
+}
+
+.img{
+    opacity: 1;
+    transition: opacity 300ms ease;
+}
