@@ -1,7 +1,35 @@
-<div *ngIf="user">
+<!--<div *ngIf="user">
   <h2 class="page-header">{{user.name}}</h2>
   <ul class="list-group">
     <li class="list-group-item">Username: {{user.username}}</li>
     <li class="list-group-item">Email: {{user.email}}</li>
   </ul>
+</div>
+-->
+<div *ngIf="user">
+    <div class="profile-info-inner">
+        <div class="row">
+          <div class="col-md-4">
+              <img src="../../../assets/IMG_1954.PNG" height="400"/>
+          </div>
+        <div class="col-md-4">
+          <ul class="list-group">
+            <li class="list-group-item">Username: {{user.username}}</li>
+            <li class="list-group-item">Email: {{user.email}}</li>
+          </ul>
+        </div>
+        <div class="col-md-4">
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/zacharywagner" target="_blank"><img class="linkedin" src="../../../assets/linkedin_circle_gray.png" alt="LinkedIn Icon" /></a>
+            <a href="https://github.com/zwagner86" target="_blank"><img class="github" src="../../../assets/github_circle_gray.png" alt="GitHub Icon"/></a>
+          </div>
+        </div>
+        </div>
+        <div class="resume-link">
+          <a href="http://resume.zacharywagner.net" target="_blank" class="btn btn-primary resume-btn">
+            View Resume
+          </a>
+        </div>
+    </div>
+
 </div>

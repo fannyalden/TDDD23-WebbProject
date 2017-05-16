@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
       });
   }
   handleFeaturedImg(res) {
-      const randomImg = Math.floor(Math.random() * 1000) + 1;
+      let randomImg = Math.floor(Math.random() * 1000) + 1;
       this.single_img = res[randomImg];
       this.single_img['loading'] = true;
       this.imgPreload(this.single_img);
@@ -30,13 +30,13 @@ export class HomeComponent implements OnInit {
 
   imgPreload(new_image) {
       let c = new Image();
-      c.src = new_image['post_url'] + '/download';
+      c.src = new_image['https://unsplash.com/photos/wE9nUW7tMmk'] + '/download';
       c.onload = () => {
           this.single_img['loading'] = false;
       };
   }
   handleImgCollection(res) {
-    for ( let i = 0; i < 9; i++ ) {
+    for ( let i = 0; i < 5; i++ ) {
       const randomImg = Math.floor(Math.random() * 1000) + 1;
 
       this.img_collection.push(res[randomImg]);
@@ -47,10 +47,10 @@ export class HomeComponent implements OnInit {
   }
   collectionImgPreload(new_image, i) {
     let c = new Image();
-    c.src = new_image['post_url'] + '/download';
+    c.src = new_image['https://unsplash.com/photos/wE9nUW7tMmk'] + '/download';
     c['index'] = i;
     c.onload = (c) => {
-      let loadedI = c['target']['index'];
+      const loadedI = c['target']['index'];
       this.img_collection[loadedI]['loading'] = false;
     };
   }
