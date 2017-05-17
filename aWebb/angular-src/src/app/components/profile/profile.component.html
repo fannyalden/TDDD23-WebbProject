@@ -14,6 +14,7 @@
           </div>
         <div class="col-md-4">
           <ul class="list-group">
+              <li class="list-group-item">Name: {{user.name}}</li>
             <li class="list-group-item">Username: {{user.username}}</li>
             <li class="list-group-item">Email: {{user.email}}</li>
           </ul>
@@ -26,9 +27,7 @@
         </div>
         </div>
         <div class="resume-link">
-          <a href="http://resume.zacharywagner.net" target="_blank" class="btn btn-primary resume-btn">
-            View Resume
-          </a>
+            <a class="btn btn-primary" [routerLink]="['/uploadimg']">Upload image</a>
         </div>
     </div>
 

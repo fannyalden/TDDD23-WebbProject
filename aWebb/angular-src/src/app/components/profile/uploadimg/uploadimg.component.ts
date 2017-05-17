@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+import {ProfileComponent } from '../profile.component';
 
 @Component({
     selector: 'app-dashboard',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UploadimgComponent implements OnInit {
 
-    constructor() { }
+    constructor(
+        private router: Router,
+        private authService: AuthService
+    ) { }
 
     ngOnInit() {
     }
-
 }
