@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   imgPreload(new_image) {
       let c = new Image();
-      c.src = new_image['https://unsplash.com/photos/wE9nUW7tMmk'] + '/download';
+      c.src = new_image['post_url'] + '/download';
       c.onload = () => {
           this.single_img['loading'] = false;
       };
@@ -47,7 +47,7 @@ export class HomeComponent implements OnInit {
   }
   collectionImgPreload(new_image, i) {
     let c = new Image();
-    c.src = new_image['https://unsplash.com/photos/wE9nUW7tMmk'] + '/download';
+    c.src = new_image['post_url'] + '/download';
     c['index'] = i;
     c.onload = (c) => {
       const loadedI = c['target']['index'];
