@@ -21,7 +21,9 @@ mongoose.connection.on('error', function(err) {
 
 const app = express();
 
+const fileUpload = require('express-fileupload');
 const users = require('./routes/users');
+const images = require('./routes/images')
 
 // Port Number
 const port = 4000;
@@ -38,10 +40,12 @@ app.use(bodyParser.json());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(fileUpload())
 
 require('./config/passport')(passport);
 
 app.use('/users', users);
+app.use('/images', images);
 
 // Index Route
 app.get('/', function(req, res) {

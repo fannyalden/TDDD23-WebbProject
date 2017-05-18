@@ -16,16 +16,20 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UploadimgComponent } from './components/profile/uploadimg/uploadimg.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
+import { ImgService } from './services/img.service';
+import { Ng2UploaderModule } from 'ng2-uploader';
 var appRoutes = [
     { path: '', component: HomeComponent },
     { path: 'register', component: RegisterComponent },
     { path: 'login', component: LoginComponent },
     { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] }
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+    { path: 'uploadimg', component: UploadimgComponent, canActivate: [AuthGuard] }
 ];
 var AppModule = (function () {
     function AppModule() {
@@ -41,16 +45,18 @@ AppModule = __decorate([
             RegisterComponent,
             HomeComponent,
             DashboardComponent,
-            ProfileComponent
+            ProfileComponent,
+            UploadimgComponent
         ],
         imports: [
             BrowserModule,
             FormsModule,
             HttpModule,
             RouterModule.forRoot(appRoutes),
-            FlashMessagesModule
+            FlashMessagesModule,
+            Ng2UploaderModule
         ],
-        providers: [ValidateService, AuthService, AuthGuard],
+        providers: [ValidateService, AuthService, AuthGuard, ImgService],
         bootstrap: [AppComponent]
     })
 ], AppModule);

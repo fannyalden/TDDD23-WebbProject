@@ -13,12 +13,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { UploadimgComponent } from './components/profile/uploadimg/uploadimg.component';
 
-
 import {ValidateService} from './services/validate.service';
 import {AuthService} from './services/auth.service';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {AuthGuard} from './guards/auth.guard';
-import {ImgService } from './services/img.service';
+import {ImgService} from './services/img.service';
 
 const appRoutes: Routes =  [
   {path: '', component: HomeComponent},
@@ -45,7 +44,8 @@ const appRoutes: Routes =  [
     FormsModule,
     HttpModule,
     RouterModule.forRoot(appRoutes),
-    FlashMessagesModule
+    FlashMessagesModule,
+
   ],
   providers: [ValidateService, AuthService, AuthGuard, ImgService],
   bootstrap: [AppComponent]
