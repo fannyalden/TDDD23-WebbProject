@@ -1,1 +1,15 @@
-<p>Upploadimg works!</p>
+<form (submit)="onUploadSubmit()">
+        <div class="form-group">
+            <label>File</label>
+            <input type="file" [(ngModel)]="imagePath" name="myimage">
+        </div>
+        <div class="form-group">
+            <label>Name of image</label>
+            <input type="text" [(ngModel)]="imageName" name="imageName" class="form-control">
+        </div>
+        <div class="form-group">
+            <label>Tag</label>
+            <input type="text" [(ngModel)]="imageTags" name="tags" class="form-control" >
+        </div>
+        <input type="submit" name="submitImage" class="btn btn-primary" value="Upload">
+</form>

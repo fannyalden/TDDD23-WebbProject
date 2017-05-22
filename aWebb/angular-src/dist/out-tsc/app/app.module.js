@@ -22,7 +22,6 @@ import { AuthService } from './services/auth.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
 import { ImgService } from './services/img.service';
-import { Ng2UploaderModule } from 'ng2-uploader';
 var appRoutes = [
     { path: '', component: HomeComponent },
     { path: 'register', component: RegisterComponent },
@@ -54,7 +53,6 @@ AppModule = __decorate([
             HttpModule,
             RouterModule.forRoot(appRoutes),
             FlashMessagesModule,
-            Ng2UploaderModule
         ],
         providers: [ValidateService, AuthService, AuthGuard, ImgService],
         bootstrap: [AppComponent]

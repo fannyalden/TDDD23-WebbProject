@@ -13,6 +13,15 @@ export class AuthService {
     this.isDev = true; // Change to false before deployment
   }
 
+
+  uploadImage(image){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('http://localhost:4000/images/upload');
+    return this.http.post(ep, image,{headers: headers})
+        .map(res => res.json());
+  }
+
   registerUser(user){
     let headers = new Headers();
     headers.append('Content-Type','application/json');

@@ -10,12 +10,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../services/auth.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
 var UploadimgComponent = (function () {
-    function UploadimgComponent(router, authService) {
+    function UploadimgComponent(router, authService, flashMessage) {
         this.router = router;
         this.authService = authService;
+        this.flashMessage = flashMessage;
     }
     UploadimgComponent.prototype.ngOnInit = function () {
+    };
+    UploadimgComponent.prototype.onUploadSubmit = function () {
+        var _this = this;
+        var uploaded = {
+            imageName: this.imageName,
+            imagePath: this.imagePath,
+            imageTags: this.imageTags
+        };
+        console.log(uploaded.imageTags);
+        // Upload image
+        this.authService.uploadImage(uploaded).subscribe(function (data) {
+            if (data.success) {
+                _this.flashMessage.show('Image uploaded', { cssClass: 'alert-success', timeout: 3000 });
+                _this.router.navigate(['/profile']);
+            }
+            else {
+                _this.flashMessage.show('Something went wrong', { cssClass: 'alert-danger', timeout: 3000 });
+                _this.router.navigate(['/uploadimg']);
+            }
+        });
     };
     return UploadimgComponent;
 }());
@@ -26,7 +48,8 @@ UploadimgComponent = __decorate([
         styleUrls: ['./uploadimg.component.css']
     }),
     __metadata("design:paramtypes", [Router,
-        AuthService])
+        AuthService,
+        FlashMessagesService])
 ], UploadimgComponent);
 export { UploadimgComponent };
 //# sourceMappingURL=C:/Users/Agnes/Documents/tddd27/TDDD272017-aWebb/aWebb/angular-src/src/app/components/profile/uploadimg/uploadimg.component.js.map
