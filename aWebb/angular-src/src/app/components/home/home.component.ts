@@ -1,56 +1,52 @@
 import { Component, OnInit } from '@angular/core';
-import { ImgService } from '../../services/img.service';
+import {Router} from "@angular/router";
+import {AuthService} from "../../services/auth.service";
+import {UploadService} from "../../services/upload.service";
+import {FlashMessagesService} from "angular2-flash-messages";
+import {ValidateService} from "../../services/validate.service";
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  providers: [ ImgService ]
 })
 export class HomeComponent implements OnInit {
-  single_img: Object;
-  img_collection: Object[] = [];
-  constructor(private imgService: ImgService) {}
+    imageName: String;
+    imagePath: String;
+    image: File
 
-  ngOnInit() {
-    this.imgService
-      .getImgList()
-      .subscribe( (res: Object[]) => {
-        this.handleFeaturedImg(res);
-        this.handleImgCollection(res);
-      });
-  }
-  handleFeaturedImg(res) {
-      let randomImg = Math.floor(Math.random() * 1000) + 1;
-      this.single_img = res[randomImg];
-      this.single_img['loading'] = true;
-      this.imgPreload(this.single_img);
+    constructor(private validateService: ValidateService,
+                private flashMessage: FlashMessagesService,
+                private authService: AuthService,
+                private uploadService: UploadService,
+                private router: Router
+                ) {
     }
 
-  imgPreload(new_image) {
-      let c = new Image();
-      c.src = new_image['post_url'] + '/download';
-      c.onload = () => {
-          this.single_img['loading'] = false;
-      };
-  }
-  handleImgCollection(res) {
-    for ( let i = 0; i < 5; i++ ) {
-      const randomImg = Math.floor(Math.random() * 1000) + 1;
-
-      this.img_collection.push(res[randomImg]);
-      this.img_collection[i]['loading'] = true;
-
-      this.collectionImgPreload( this.img_collection[i], i );
+    ngOnInit() {
     }
-  }
-  collectionImgPreload(new_image, i) {
-    let c = new Image();
-    c.src = new_image['post_url'] + '/download';
-    c['index'] = i;
-    c.onload = (c) => {
-      const loadedI = c['target']['index'];
-      this.img_collection[loadedI]['loading'] = false;
-    };
-  }
+    onChange(event) {
+        this.image = event.srcElement.files[0]
+    }
+
+    onUploadSubmit() {
+        // Register user
+        /*this.uploadService.makeFileRequest('http://localhost:4000/images/upload',[],this.images).subscribe(data=>{
+            this.flashMessage.show('swag', {cssClass: 'alert-success', timeout: 5000})
+        })*/
+        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.image).then(data=>{
+            if(data.success){
+                this.flashMessage.show('Image uploaded', {cssClass: 'alert-success', timeout: 3000});
+
+            } else {
+                this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+            }
+        }).catch(err=>{
+            // Error trying to communicate to backend
+            this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
+        })
+
+    }
 }
+
+

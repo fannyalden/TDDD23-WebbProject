@@ -19,10 +19,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { UploadimgComponent } from './components/profile/uploadimg/uploadimg.component';
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { UploadService } from './services/upload.service';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthGuard } from './guards/auth.guard';
-import { ImgService } from './services/img.service';
-import { Ng2UploaderModule } from 'ng2-uploader';
 var appRoutes = [
     { path: '', component: HomeComponent },
     { path: 'register', component: RegisterComponent },
@@ -54,9 +53,8 @@ AppModule = __decorate([
             HttpModule,
             RouterModule.forRoot(appRoutes),
             FlashMessagesModule,
-            Ng2UploaderModule
         ],
-        providers: [ValidateService, AuthService, AuthGuard, ImgService],
+        providers: [ValidateService, AuthService, AuthGuard, UploadService],
         bootstrap: [AppComponent]
     })
 ], AppModule);

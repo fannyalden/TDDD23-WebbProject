@@ -16,6 +16,18 @@ var AuthService = (function () {
         this.http = http;
         this.isDev = true; // Change to false before deployment
     }
+    AuthService.prototype.uploadImg = function (img) {
+        var headers = new Headers();
+        var ep = this.prepEndpoint('http://localhost:4000/images/upload');
+        return this.http.post(ep, { image: img }, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
+    AuthService.prototype.storeImageData = function (token, image) {
+        localStorage.setItem('id_token_img', token);
+        localStorage.setItem('image', JSON.stringify(image));
+        this.authToken = token;
+        this.image = image;
+    };
     AuthService.prototype.registerUser = function (user) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');

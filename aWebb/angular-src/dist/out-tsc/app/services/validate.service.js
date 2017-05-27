@@ -11,6 +11,14 @@ import { Injectable } from '@angular/core';
 var ValidateService = (function () {
     function ValidateService() {
     }
+    ValidateService.prototype.validateUpload = function (img) {
+        if (img.imageName == undefined || img.imagePath == undefined) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
     ValidateService.prototype.validateRegister = function (user) {
         if (user.name == undefined || user.email == undefined || user.username == undefined || user.password == undefined) {
             return false;

@@ -8,52 +8,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { ImgService } from '../../services/img.service';
+import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { UploadService } from "../../services/upload.service";
+import { FlashMessagesService } from "angular2-flash-messages";
+import { ValidateService } from "../../services/validate.service";
 var HomeComponent = (function () {
-    function HomeComponent(imgService) {
-        this.imgService = imgService;
-        this.img_collection = [];
+    function HomeComponent(validateService, flashMessage, authService, uploadService, router) {
+        this.validateService = validateService;
+        this.flashMessage = flashMessage;
+        this.authService = authService;
+        this.uploadService = uploadService;
+        this.router = router;
     }
     HomeComponent.prototype.ngOnInit = function () {
+    };
+    HomeComponent.prototype.onChange = function (event) {
+        this.image = event.srcElement.files[0];
+    };
+    HomeComponent.prototype.onUploadSubmit = function () {
         var _this = this;
-        this.imgService
-            .getImgList()
-            .subscribe(function (res) {
-            _this.handleFeaturedImg(res);
-            _this.handleImgCollection(res);
+        // Register user
+        /*this.uploadService.makeFileRequest('http://localhost:4000/images/upload',[],this.images).subscribe(data=>{
+            this.flashMessage.show('swag', {cssClass: 'alert-success', timeout: 5000})
+        })*/
+        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.image).then(function (data) {
+            if (data.success) {
+                _this.flashMessage.show('Image uploaded', { cssClass: 'alert-success', timeout: 3000 });
+            }
+            else {
+                _this.flashMessage.show('Something went wrong', { cssClass: 'alert-danger', timeout: 3000 });
+            }
+        }).catch(function (err) {
+            // Error trying to communicate to backend
+            _this.flashMessage.show('Something went wrong', { cssClass: 'alert-danger', timeout: 3000 });
         });
-    };
-    HomeComponent.prototype.handleFeaturedImg = function (res) {
-        var randomImg = Math.floor(Math.random() * 1000) + 1;
-        this.single_img = res[randomImg];
-        this.single_img['loading'] = true;
-        this.imgPreload(this.single_img);
-    };
-    HomeComponent.prototype.imgPreload = function (new_image) {
-        var _this = this;
-        var c = new Image();
-        c.src = new_image['post_url'] + '/download';
-        c.onload = function () {
-            _this.single_img['loading'] = false;
-        };
-    };
-    HomeComponent.prototype.handleImgCollection = function (res) {
-        for (var i = 0; i < 5; i++) {
-            var randomImg = Math.floor(Math.random() * 1000) + 1;
-            this.img_collection.push(res[randomImg]);
-            this.img_collection[i]['loading'] = true;
-            this.collectionImgPreload(this.img_collection[i], i);
-        }
-    };
-    HomeComponent.prototype.collectionImgPreload = function (new_image, i) {
-        var _this = this;
-        var c = new Image();
-        c.src = new_image['post_url'] + '/download';
-        c['index'] = i;
-        c.onload = function (c) {
-            var loadedI = c['target']['index'];
-            _this.img_collection[loadedI]['loading'] = false;
-        };
     };
     return HomeComponent;
 }());
@@ -62,9 +51,12 @@ HomeComponent = __decorate([
         selector: 'app-home',
         templateUrl: './home.component.html',
         styleUrls: ['./home.component.css'],
-        providers: [ImgService]
     }),
-    __metadata("design:paramtypes", [ImgService])
+    __metadata("design:paramtypes", [ValidateService,
+        FlashMessagesService,
+        AuthService,
+        UploadService,
+        Router])
 ], HomeComponent);
 export { HomeComponent };
 //# sourceMappingURL=C:/Users/Agnes/Documents/tddd27/TDDD272017-aWebb/aWebb/angular-src/src/app/components/home/home.component.js.map

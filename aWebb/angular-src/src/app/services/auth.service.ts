@@ -7,10 +7,26 @@ import {tokenNotExpired} from 'angular2-jwt';
 export class AuthService {
   authToken: any;
   user: any;
+  image: any;
   isDev:boolean;
 
   constructor(private http:Http) {
     this.isDev = true; // Change to false before deployment
+  }
+
+  uploadImg(img){
+    let headers = new Headers();
+
+    let ep = this.prepEndpoint('http://localhost:4000/images/upload');
+    return this.http.post(ep, {image: img},{headers: headers})
+        .map(res => res.json());
+}
+
+  storeImageData(token, image){
+    localStorage.setItem('id_token_img', token);
+    localStorage.setItem('image', JSON.stringify(image));
+    this.authToken = token;
+    this.image = image;
   }
 
   registerUser(user){
@@ -60,7 +76,6 @@ export class AuthService {
     this.user = null;
     localStorage.clear();
   }
-
   prepEndpoint(ep){
     if(this.isDev){
       return ep;
