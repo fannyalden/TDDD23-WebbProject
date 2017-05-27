@@ -8,12 +8,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../../services/auth.service';
 var UploadimgComponent = (function () {
-    function UploadimgComponent(router, authService) {
-        this.router = router;
-        this.authService = authService;
+    function UploadimgComponent() {
     }
     UploadimgComponent.prototype.ngOnInit = function () {
     };
@@ -25,8 +21,7 @@ UploadimgComponent = __decorate([
         templateUrl: './uploadimg.component.html',
         styleUrls: ['./uploadimg.component.css']
     }),
-    __metadata("design:paramtypes", [Router,
-        AuthService])
+    __metadata("design:paramtypes", [])
 ], UploadimgComponent);
 export { UploadimgComponent };
 //# sourceMappingURL=C:/Users/Agnes/Documents/tddd27/TDDD272017-aWebb/aWebb/angular-src/src/app/components/profile/uploadimg/uploadimg.component.js.map

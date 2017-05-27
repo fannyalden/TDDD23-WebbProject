@@ -46,6 +46,8 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/images', images);
+// Visar alla bilder i mappen images när man går in på localhost/images/<bildnamn>
+app.use('/images', express.static(__dirname + '/images'));
 
 // Index Route
 app.get('/', function(req, res) {

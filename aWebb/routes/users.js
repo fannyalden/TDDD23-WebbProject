@@ -4,7 +4,15 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
+const Images = require('../models/image');
 
+router.get('/:userId/images', function(req,res){
+  let userId = req.params.userId;
+  // Hämta bilder från användare med id userId
+  Images.getImages((err, data)=>{
+      res.json(data)
+  })
+})
 // Register
 router.post('/register', function(req, res, next) {
 
