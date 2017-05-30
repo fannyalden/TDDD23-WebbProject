@@ -18,8 +18,11 @@ var HomeComponent = (function () {
         this.uploadService = uploadService;
     }
     HomeComponent.prototype.ngOnInit = function () {
-        this.authService.getImage().subscribe(function (profile) {
-            console.log('test');
+        var _this = this;
+        this.authService.getImage().subscribe(function (data) {
+            for (var i = 0; i < data.length; i++)
+                console.log(data[i].imagePath);
+            _this.images = data;
         }, function (err) {
             console.log(err);
             return false;

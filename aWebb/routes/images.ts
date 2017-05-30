@@ -27,14 +27,11 @@ router.post('/upload', function(req, res, next) {
         Images.addImage(newImage, (err) => {
             console.log(err)
                 res.json({success: true, msg: "Image added"})
-                console.log("newImage: " + newImage.imagePath);
+                //console.log("newImage: " + newImage.imagePath);
         });
     });
 });
 
-router.get('/read', (req,res,next)=>{
 
-    console.log('hello from read /read')
-})
 
 module.exports = router

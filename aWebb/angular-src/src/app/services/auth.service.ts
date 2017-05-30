@@ -31,7 +31,7 @@ export class AuthService {
   getImage(){
     let headers = new Headers();
     headers.append('Content-Type','application/json');
-    let ep = this.prepEndpoint('http://localhost:4000/images/read');
+    let ep = this.prepEndpoint('http://localhost:4000/users/:userId/images');
     return this.http.get(ep, {headers: headers})
         .map(res => res.json());
   }

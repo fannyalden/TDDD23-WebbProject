@@ -31,7 +31,7 @@ var AuthService = (function () {
     AuthService.prototype.getImage = function () {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        var ep = this.prepEndpoint('http://localhost:4000/images/read');
+        var ep = this.prepEndpoint('http://localhost:4000/users/:userId/images');
         return this.http.get(ep, { headers: headers })
             .map(function (res) { return res.json(); });
     };

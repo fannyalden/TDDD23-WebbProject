@@ -20,6 +20,7 @@ module.exports.getImageByUserId = function(userId, callback){
     // This is not yet tested
     Image.find().where('userId', userId).exec(callback)
 }
+
 // Get all the images from the database
 module.exports.getImages = function(callback){
     return Image.find({}, callback);

@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
     imageName: String;
     imagePath: String;
     img: File
-    image: Object
+    images: Object
     user: Object
 
     constructor(private flashMessage: FlashMessagesService,
@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
 
-
-        this.authService.getImage().subscribe(profile => {
-               console.log('test')
+        this.authService.getImage().subscribe(data => {
+                for(let i=0; i<data.length;i++) console.log(data[i].imagePath)
+                this.images = data
             },
             err => {
                 console.log(err);

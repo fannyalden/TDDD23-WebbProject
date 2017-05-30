@@ -9,9 +9,10 @@ const Images = require('../models/image');
 router.get('/:userId/images', function(req,res){
   let userId = req.params.userId;
   // Hämta bilder från användare med id userId
+    console.log(userId)
+
   Images.getImages((err, data)=>{
       res.json(data)
-   //   res.json({image: req.image});
   })
 })
 
