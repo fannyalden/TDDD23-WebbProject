@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
 import {AuthService} from "../../services/auth.service";
 import {UploadService} from "../../services/upload.service";
 import {FlashMessagesService} from "angular2-flash-messages";
-import {ValidateService} from "../../services/validate.service";
 
 @Component({
   selector: 'app-home',
@@ -23,10 +21,10 @@ export class HomeComponent implements OnInit {
                 ) {}
 
     ngOnInit() {
-
         this.authService.getImage().subscribe(data => {
-                for(let i=0; i<data.length;i++) console.log(data[i].imagePath)
-                this.images = data
+                for(let i=0; i<data.length;i++)
+                    console.log(data[i].imageName); //undefined, imageName doesnt exist in database
+                    this.images = data;
             },
             err => {
                 console.log(err);

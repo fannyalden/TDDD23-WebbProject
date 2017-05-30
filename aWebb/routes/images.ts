@@ -3,7 +3,6 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 var fs = require('fs');
 var Images = require('../models/image');
-const path = require('path');
 
 router.post('/upload', function(req, res, next) {
 
@@ -11,8 +10,8 @@ router.post('/upload', function(req, res, next) {
         return res.json({success: false, msg: "No file was uploaded"})
     }
 
-    const imagePath = './images/'+ req.files.image.name
-    const imageName = req.files.image.name
+    const imagePath = './images/'+ req.files.image.name;
+    const imageName = req.files.image.name;
 
     fs.writeFile(imagePath, req.files.image.data, function(err) {
         if(err) {
@@ -20,7 +19,8 @@ router.post('/upload', function(req, res, next) {
             return res.json({success: false, msg: "An error occured while writing file"})
         }
         let newImage = new Images({
-            imagePath: '/images/' + imageName
+            imagePath: '/images/' + imageName,
+            imageName: imageName
         });
 
         //Add image to database
@@ -31,7 +31,5 @@ router.post('/upload', function(req, res, next) {
         });
     });
 });
-
-
 
 module.exports = router

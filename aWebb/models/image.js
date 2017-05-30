@@ -4,6 +4,10 @@ const ImageSchema = mongoose.Schema({
     imagePath: {
         type: String,
         required: true
+    },
+    imageName: {
+        type: String,
+        required: true
     }
     // TODO: Add user
 });
