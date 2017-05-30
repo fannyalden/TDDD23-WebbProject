@@ -28,6 +28,13 @@ var AuthService = (function () {
         this.authToken = token;
         this.image = image;
     };
+    AuthService.prototype.getImage = function () {
+        var headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+        var ep = this.prepEndpoint('http://localhost:4000/images/read');
+        return this.http.get(ep, { headers: headers })
+            .map(function (res) { return res.json(); });
+    };
     AuthService.prototype.registerUser = function (user) {
         var headers = new Headers();
         headers.append('Content-Type', 'application/json');
@@ -61,6 +68,7 @@ var AuthService = (function () {
         var token = localStorage.getItem('id_token');
         this.authToken = token;
     };
+    // from angular 2, jwt. Check to see if logged in
     AuthService.prototype.loggedIn = function () {
         return tokenNotExpired();
     };

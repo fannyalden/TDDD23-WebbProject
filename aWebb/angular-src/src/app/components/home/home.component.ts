@@ -13,28 +13,35 @@ import {ValidateService} from "../../services/validate.service";
 export class HomeComponent implements OnInit {
     imageName: String;
     imagePath: String;
-    image: File
+    img: File
+    image: Object
+    user: Object
 
-    constructor(private validateService: ValidateService,
-                private flashMessage: FlashMessagesService,
+    constructor(private flashMessage: FlashMessagesService,
                 private authService: AuthService,
-                private uploadService: UploadService,
-                private router: Router
-                ) {
-    }
+                private uploadService: UploadService
+                ) {}
 
     ngOnInit() {
+
+
+        this.authService.getImage().subscribe(profile => {
+               console.log('test')
+            },
+            err => {
+                console.log(err);
+                return false;
+            });
+
+
     }
     onChange(event) {
-        this.image = event.srcElement.files[0]
+        this.img = event.srcElement.files[0]
     }
 
     onUploadSubmit() {
-        // Register user
-        /*this.uploadService.makeFileRequest('http://localhost:4000/images/upload',[],this.images).subscribe(data=>{
-            this.flashMessage.show('swag', {cssClass: 'alert-success', timeout: 5000})
-        })*/
-        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.image).then(data=>{
+        // Upload image
+        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.img).then(data=>{
             if(data.success){
                 this.flashMessage.show('Image uploaded', {cssClass: 'alert-success', timeout: 3000});
 

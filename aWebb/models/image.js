@@ -1,27 +1,26 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
-const config = require('../config/database');
 
 const ImageSchema = mongoose.Schema({
     imagePath: {
         type: String,
         required: true
     }
-    // Lägg till userId
+    // TODO: Add user
 });
 
 const Image = module.exports = mongoose.model('Image', ImageSchema);
 
+//Functions that interact width the database
 
 module.exports.getImageById = function(id, callback){
     Image.findById(id, callback);
 }
 module.exports.getImageByUserId = function(userId, callback){
-    // Detta är inte testat
-    // TODO: Måste lägga till userId i Image-modellen
+    // TODO: Add user in image model
+    // This is not yet tested
     Image.find().where('userId', userId).exec(callback)
 }
-// Hämtar alla bilder från databasen
+// Get all the images from the database
 module.exports.getImages = function(callback){
     return Image.find({}, callback);
 }

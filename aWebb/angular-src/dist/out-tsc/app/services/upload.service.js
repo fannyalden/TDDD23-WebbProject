@@ -16,6 +16,7 @@ var UploadService = (function () {
     }
     UploadService.prototype.uploadFile = function (url, file) {
         return new Promise(function (resolve, reject) {
+            //xhr is used to fetch from outside the pages origin, in this case the images
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
                 if (xhr.readyState === 4) {

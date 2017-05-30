@@ -1,3 +1,5 @@
+//"meating place" for all the components
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';

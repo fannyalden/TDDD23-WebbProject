@@ -11,8 +11,10 @@ router.get('/:userId/images', function(req,res){
   // Hämta bilder från användare med id userId
   Images.getImages((err, data)=>{
       res.json(data)
+   //   res.json({image: req.image});
   })
 })
+
 // Register
 router.post('/register', function(req, res, next) {
 
@@ -32,11 +34,12 @@ router.post('/register', function(req, res, next) {
   });
 });
 
-// Authenticate
+// Authenticate, used to log in
 router.post('/authenticate', (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
 
+  //Check if user exists
   User.getUserByUsername(username, (err, user) => {
     if(err) throw err;
     if(!user){
@@ -52,7 +55,7 @@ router.post('/authenticate', (req, res, next) => {
 
         res.json({
           success: true,
-          token: 'JWT '+token,
+          token: 'JWT '+token, //Password
           user: {
             id: user._id,
             name: user.name,
@@ -68,6 +71,8 @@ router.post('/authenticate', (req, res, next) => {
 });
 
 // Profile
+//Passport is a middlewear for authentication
+//Passport.authenticate
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   res.json({user: req.user});
 });

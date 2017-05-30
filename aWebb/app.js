@@ -1,3 +1,4 @@
+//Make connection to database, set backend port number, start server and so on...
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -46,7 +47,8 @@ require('./config/passport')(passport);
 
 app.use('/users', users);
 app.use('/images', images);
-// Visar alla bilder i mappen images när man går in på localhost/images/<bildnamn>
+
+// Shows all images in the folder "images" when accessing localhost/images/<image name>
 app.use('/images', express.static(__dirname + '/images'));
 
 // Index Route
@@ -54,6 +56,8 @@ app.get('/', function(req, res) {
   res.send('Invalid Endpoint');
 });
 
+//Every route, except the ones we have specified go to index.html
+//__dirname = the current directory
 app.get('*', function(req, res) {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });

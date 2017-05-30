@@ -10,13 +10,12 @@ export class AuthService {
   image: any;
   isDev:boolean;
 
-  constructor(private http:Http) {
+  constructor(private http:Http) { //Http is used to move data between client and server (front end and back end)
     this.isDev = true; // Change to false before deployment
   }
 
   uploadImg(img){
     let headers = new Headers();
-
     let ep = this.prepEndpoint('http://localhost:4000/images/upload');
     return this.http.post(ep, {image: img},{headers: headers})
         .map(res => res.json());
@@ -27,6 +26,14 @@ export class AuthService {
     localStorage.setItem('image', JSON.stringify(image));
     this.authToken = token;
     this.image = image;
+  }
+
+  getImage(){
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+    let ep = this.prepEndpoint('http://localhost:4000/images/read');
+    return this.http.get(ep, {headers: headers})
+        .map(res => res.json());
   }
 
   registerUser(user){
@@ -67,6 +74,7 @@ export class AuthService {
     this.authToken = token;
   }
 
+  // from angular 2, jwt. Check to see if logged in
   loggedIn(){
     return tokenNotExpired();
   }

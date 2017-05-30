@@ -8,31 +8,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Component } from '@angular/core';
-import { Router } from "@angular/router";
 import { AuthService } from "../../services/auth.service";
 import { UploadService } from "../../services/upload.service";
 import { FlashMessagesService } from "angular2-flash-messages";
-import { ValidateService } from "../../services/validate.service";
 var HomeComponent = (function () {
-    function HomeComponent(validateService, flashMessage, authService, uploadService, router) {
-        this.validateService = validateService;
+    function HomeComponent(flashMessage, authService, uploadService) {
         this.flashMessage = flashMessage;
         this.authService = authService;
         this.uploadService = uploadService;
-        this.router = router;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        this.authService.getImage().subscribe(function (profile) {
+            console.log('test');
+        }, function (err) {
+            console.log(err);
+            return false;
+        });
     };
     HomeComponent.prototype.onChange = function (event) {
-        this.image = event.srcElement.files[0];
+        this.img = event.srcElement.files[0];
     };
     HomeComponent.prototype.onUploadSubmit = function () {
         var _this = this;
-        // Register user
-        /*this.uploadService.makeFileRequest('http://localhost:4000/images/upload',[],this.images).subscribe(data=>{
-            this.flashMessage.show('swag', {cssClass: 'alert-success', timeout: 5000})
-        })*/
-        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.image).then(function (data) {
+        // Upload image
+        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.img).then(function (data) {
             if (data.success) {
                 _this.flashMessage.show('Image uploaded', { cssClass: 'alert-success', timeout: 3000 });
             }
@@ -52,11 +51,9 @@ HomeComponent = __decorate([
         templateUrl: './home.component.html',
         styleUrls: ['./home.component.css'],
     }),
-    __metadata("design:paramtypes", [ValidateService,
-        FlashMessagesService,
+    __metadata("design:paramtypes", [FlashMessagesService,
         AuthService,
-        UploadService,
-        Router])
+        UploadService])
 ], HomeComponent);
 export { HomeComponent };
 //# sourceMappingURL=C:/Users/Agnes/Documents/tddd27/TDDD272017-aWebb/aWebb/angular-src/src/app/components/home/home.component.js.map
