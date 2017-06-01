@@ -41,7 +41,7 @@ app.use(bodyParser.json());
 // Passport Middleware
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(fileUpload())
+app.use(fileUpload());
 
 require('./config/passport')(passport);
 

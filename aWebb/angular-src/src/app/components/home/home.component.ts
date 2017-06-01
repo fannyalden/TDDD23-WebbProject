@@ -11,9 +11,9 @@ import {FlashMessagesService} from "angular2-flash-messages";
 export class HomeComponent implements OnInit {
     imageName: String;
     imagePath: String;
-    img: File
-    images: Object
-    user: Object
+    img: File;
+    images: Object;
+    user: Object;
 
     constructor(private flashMessage: FlashMessagesService,
                 private authService: AuthService,
@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
 
     ngOnInit() {
         this.authService.getImage().subscribe(data => {
-                for(let i=0; i<data.length;i++)
-                    console.log(data[i].imageName); //undefined, imageName doesnt exist in database
+                for(let i = 0; i < data.length; i++)
+                  //  console.log(data[i].imageName); //undefined, imageName doesnt exist in database
                     this.images = data;
             },
             err => {
@@ -34,23 +34,22 @@ export class HomeComponent implements OnInit {
 
     }
     onChange(event) {
-        this.img = event.srcElement.files[0]
+        this.img = event.srcElement.files[0];
     }
 
     onUploadSubmit() {
         // Upload image
-        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.img).then(data=>{
-            if(data.success){
+        this.uploadService.uploadFile('http://localhost:4000/images/upload', this.img).then(data => {
+            if (data.success) {
                 this.flashMessage.show('Image uploaded', {cssClass: 'alert-success', timeout: 3000});
 
             } else {
                 this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
             }
-        }).catch(err=>{
+        }).catch(err => {
             // Error trying to communicate to backend
             this.flashMessage.show('Something went wrong', {cssClass: 'alert-danger', timeout: 3000});
-        })
-
+        });
     }
 }
 

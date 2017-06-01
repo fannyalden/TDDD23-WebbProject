@@ -10,13 +10,13 @@
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
-    "cors": "*",
+    "cors": "*", // Cross-origin resource sharing
     "express": "*",
     "express-fileupload": "^0.1.3",
     "flash-message": "*",
     "jsonwebtoken": "*",
     "mongoose": "*",
-    "ng2-uploader": "^2.0.0",
+    // "ng2-uploader": "^2.0.0",
     "passport": "*",
     "passport-jwt": "*",
     "reflect-metadata": "^0.1.2",

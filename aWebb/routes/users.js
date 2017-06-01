@@ -9,12 +9,12 @@ const Images = require('../models/image');
 router.get('/:userId/images', function(req,res){
   let userId = req.params.userId;
   // Hämta bilder från användare med id userId
-    console.log(userId)
+    console.log(userId);
 
   Images.getImages((err, data)=>{
       res.json(data)
   })
-})
+});
 
 // Register
 router.post('/register', function(req, res, next) {
@@ -72,8 +72,8 @@ router.post('/authenticate', (req, res, next) => {
 });
 
 // Profile
-//Passport is a middlewear for authentication
-//Passport.authenticate
+// Passport is a middleware for authentication
+// Passport.authenticate
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   res.json({user: req.user});
 });
